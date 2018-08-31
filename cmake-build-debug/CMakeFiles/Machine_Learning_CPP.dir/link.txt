@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Machine_Learning_CPP.dir/main.cpp.o  -o Machine_Learning_CPP 
