@@ -1,7 +1,16 @@
-*
-!/src/
-!/src/*
-!.git/
-!.git/*
-!.gitignore
-!CMakeLists.txt
+# *
+# !/src/
+# !/src/*
+# !/bin/
+# !/bin/*
+# !.git/
+# !.git/*
+# !.gitignore
+# !CMakeLists.txt
+
+/CMakeFiles/
+/Machine_Learning_CPP
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+/.idea/

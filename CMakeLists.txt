@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 14)
 aux_source_directory(src SRC_DIR)
 
 # 指定生成目标
-add_executable(Machine_Learning_CPP ${SRC_DIR})
+add_executable(Machine_Learning_CPP/bin ${SRC_DIR})
