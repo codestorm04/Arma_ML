@@ -5,32 +5,7 @@
 * Date: 2019.3.24 11:59
 */
 
-#include <iostream>
-#include <armadillo>
-#include <cmath>
-using namespace std;
-using namespace arma;
-
-class Logisitic_Classifier {
-
-	public:
-        Logisitic_Classifier();
-        // ~Logisitic_Classifier();
-        int infer(vec x);
-        void train(mat x, vec y);
-        void initialize();
-
-    private:
-        rowvec w;    // a row vector of weights
-        double b = 0; // bias
-        double lr = 0.5; // Learing rate
-        double delta_threshhold = 10;
-        int iteration = 50;
-
-        double _logistic(vec x);
-        double _logistic_derivative(vec x);
-};
-
+#include <logistic/logistic_classifier.h>
 
 // Implements here
 Logisitic_Classifier::Logisitic_Classifier() {
@@ -55,6 +30,8 @@ void Logisitic_Classifier::train(mat x, vec y) {
         // if (sum(delta_sum_w) >= delta_threshhold) 
         //     break;
     }
+    // printf("w :");
+    // w.print();
 }
 
 
@@ -64,17 +41,4 @@ int Logisitic_Classifier::infer(vec x) {
 
 double Logisitic_Classifier::_logistic(vec x) {
     return 1/(1 + exp(0 - as_scalar(w * x) - b));
-}
-
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    mat x = {{1, 1}, {2, 2}, {20, 1}, {30, 1}};
-    x = x.t();
-    vec y = {1, 1, 0, 0};
-
-    Logisitic_Classifier lr_classifier = Logisitic_Classifier();
-    lr_classifier.train(x, y);
-    int res = lr_classifier.infer(vec({22, 1}));
-    printf("%d\n", res);
-    return 0;
 }

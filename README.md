@@ -22,3 +22,9 @@ download armadillo .tar, and build it.
 
 
 
+TODO:
+1. params setting
+2. normalization: L1 L2
+3. optimazations other than SGD
+4. numpy darrays testing
+5. debugging with armadillo in gdb
