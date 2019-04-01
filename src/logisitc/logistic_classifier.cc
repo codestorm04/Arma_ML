@@ -30,13 +30,15 @@ void Logisitic_Classifier::train(mat x, vec y) {
         // if (sum(delta_sum_w) >= delta_threshhold) 
         //     break;
     }
-    // printf("w :");
-    // w.print();
 }
 
 
-int Logisitic_Classifier::infer(vec x) {
-    return _logistic(x) > 0.5 ? 1 : 0;
+vec Logisitic_Classifier::infer(mat x) {
+    vec res = vec(x.n_cols);
+    for (int i = 0; i < x.n_cols; i++) {
+        res(i) = _logistic(x.col(i)) > 0.5 ? 1 : 0;
+    }
+    return res;
 }
 
 double Logisitic_Classifier::_logistic(vec x) {

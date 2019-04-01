@@ -22,7 +22,7 @@ class Logisitic_Classifier {
     public:
         Logisitic_Classifier();
         // ~Logisitic_Classifier();
-        int infer(vec x);
+        vec infer(mat x);
         void train(mat x, vec y);
         void initialize();
 
