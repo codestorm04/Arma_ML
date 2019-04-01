@@ -1,5 +1,5 @@
 /*
-* compile with flags:  -std=c++14 -o test -larmadillo
+* compile with flags:   g++ test.cc softmax_classifier.cc   ../datasets/datasets.cc -std=c++14 -larmadillo -I ../../include/
 * author: Yuzhen Liu
 * Date: 2019.3.29 10:55
 */
@@ -36,3 +36,4 @@ int main() {
     res.print();
     return 0;
 }
+

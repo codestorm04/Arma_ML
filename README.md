@@ -26,5 +26,13 @@ TODO:
 1. params setting
 2. normalization: L1 L2
 3. optimazations other than SGD
-4. models: linear regression, knn, svm, LDA, decision tree, gbdt, random forest, PCA, MDS, k-means
+4. models: linear regression, knn, svm, LDA, decision tree, gbdt, random forest, PCA, MDS, k-means, FM
 5. model saver / loader
+6. Build strategies:   [Reference](https://www.cnblogs.com/Anker/p/3527677.html)
+```c++
+cd src
+g++ -shared -fPIC datasets/datasets.cc -std=c++14 -o libdata.so -I ../include/ -larmadillo
+g++ -shared -fPIC logistic/softmax_classifier.cc -std=c++14 -o libsoftmaxclassifier.so -I ../include/ -larmadillo
+g++ test.cc -I ../../include/  -L ./ -larmadillo -ldata   -std=c++14 -lsoftmaxclassifier
+export LD_LIBRARY_PATH=/home/lyz/desktop/github_repos/Machine_Learning_CPP/src/logisitc
+```

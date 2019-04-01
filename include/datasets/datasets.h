@@ -21,6 +21,7 @@ class Datasets {
         mat x;
         vector<string> x_names;
         vec y;
+		mat y_multi;
         vector<string> y_names;
         string description;
 
@@ -30,6 +31,10 @@ class Datasets {
     private:
         void _load_iris();
         void _load_wine();
+        void _load_boston();
+        void _load_breast_cancer();
+        void _load_diabetes();
+        void _load_linnerud();
 };
 
 #endif // DATASETS_H
