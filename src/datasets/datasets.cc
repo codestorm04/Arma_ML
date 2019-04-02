@@ -12,6 +12,16 @@ Datasets::Datasets(string name) {
         _load_iris();
     } else if (name == "wine") {
         _load_wine();
+    } else if (name == "boston") {
+        _load_boston();
+    } else if (name == "breast_cancer") {
+        _load_breast_cancer();
+    } else if (name == "diabetes") {
+        _load_diabetes();
+    } else if (name == "linnerud") {
+        _load_linnerud();
+    } else {
+        cout << "[Error] No dataset named \n" << name << endl;
     }
 }
 
