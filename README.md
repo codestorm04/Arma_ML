@@ -22,7 +22,7 @@ download armadillo .tar, and build it.
 
 
 
-TODO:
+## TODO:
 1. params setting
 2. normalization: L1 L2
 3. optimazations other than SGD
