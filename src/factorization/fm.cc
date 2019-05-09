@@ -104,8 +104,10 @@ pair<umat, mat> FM::_to_sparse(mat x, uvec field) {
     /* requires the size of x and field is identity
        returns the indexes and feature values in sparse storage
     */
-    if (x.n_rows != field.n_elem)
-        throw "[Error] x.col(i) and field must have the same dimensions";
+    if (x.n_rows != field.n_elem) {
+        cerr << "[Error] x.col(i) and field must have the same dimensions" << endl;
+        throw -1;
+    }
     umat idx(size(x), fill::zeros);
     mat features(x.n_rows, x.n_cols, fill::zeros);
     int shift = 0;
@@ -118,7 +120,8 @@ pair<umat, mat> FM::_to_sparse(mat x, uvec field) {
             idx.row(i).fill(shift);
             features.row(i) = x.row(i);
         } else {
-            throw "[Error] feature field size must be opsitive integer";
+            cerr << "[Error] feature field size must be opsitive integer" << endl;
+            throw -1;
         }
         shift += field(i);
     }
