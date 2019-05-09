@@ -63,7 +63,7 @@ void FM::train(mat x, uvec field, vec y) {
 }
 
 
-vec FM::infer(mat x, uvec field) {
+vec FM::predict(mat x, uvec field) {
     // requires the size of x and field is identity
     pair<umat, mat> sparse = _to_sparse(x, field);
     umat idx = sparse.first;

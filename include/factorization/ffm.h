@@ -27,7 +27,7 @@ class FFM {
 
     public:
         FFM();
-        vec infer(mat x);
+        vec predict(mat x);
         void train(mat x, vec y);
 
     private:

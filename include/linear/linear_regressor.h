@@ -21,7 +21,7 @@ class Linear_Regressor {
         Linear_Regressor();
         Linear_Regressor(double penalty);  // Ridge Regression
         // ~Linear_Regressor();
-        vec infer(mat x);
+        vec predict(mat x);
         void train(mat x, vec y);
 
     private:

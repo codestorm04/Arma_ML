@@ -33,7 +33,7 @@ class FM {
         // within one field 
         // field is the size of features for each field
         // it means that size of x.col(i) equals to field's.
-        vec infer(mat x, uvec field);
+        vec predict(mat x, uvec field);
 
     private:
         double w0 = 0;

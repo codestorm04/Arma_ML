@@ -33,7 +33,7 @@ void Logisitic_Classifier::train(mat x, vec y) {
 }
 
 
-vec Logisitic_Classifier::infer(mat x) {
+vec Logisitic_Classifier::predict(mat x) {
     vec res = vec(x.n_cols);
     for (int i = 0; i < x.n_cols; i++) {
         res(i) = _logistic(x.col(i)) > 0.5 ? 1 : 0;

@@ -28,7 +28,7 @@ void Linear_Regressor::train(mat x, vec y) {
 }
 
 
-vec Linear_Regressor::infer(mat x) {
+vec Linear_Regressor::predict(mat x) {
     x.insert_rows(x.n_rows, rowvec(x.n_cols, fill::ones));
     vec res = vec(x.n_cols);
     for (int i = 0; i < x.n_cols; i++) {

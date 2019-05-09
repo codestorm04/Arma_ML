@@ -20,7 +20,7 @@ int main() {
     Linear_Regressor linear_regressor = Linear_Regressor();
     linear_regressor.train(dataset.x, dataset.y);
 
-    vec res = linear_regressor.infer(dataset.x);
+    vec res = linear_regressor.predict(dataset.x);
     printf("The sum loss is:\n");
     (res - dataset.y).print();
 

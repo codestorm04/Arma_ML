@@ -24,8 +24,8 @@ int main() {
     uvec field(4, fill::ones);
     FM fm = FM();
     fm.train(x, field, y);
-    // vec res = fm.infer(mat({{6.1, 2.9, 4.7, 1.4}, {5.1, 3.5, 1.4, 0.2}}).t());
-    vec res = fm.infer(x, field);
+    // vec res = fm.predict(mat({{6.1, 2.9, 4.7, 1.4}, {5.1, 3.5, 1.4, 0.2}}).t());
+    vec res = fm.predict(x, field);
     (res - y).print();
 
     return 0;

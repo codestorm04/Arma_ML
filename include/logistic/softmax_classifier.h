@@ -22,7 +22,7 @@ class Softmax_Classifier {
     public:
         Softmax_Classifier();
         // ~Softmax_Classifier();
-        vec infer(mat x);
+        vec predict(mat x);
         void train(mat x, vec y, int n_class);
 
     private:

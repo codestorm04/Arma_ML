@@ -44,7 +44,7 @@ void Softmax_Classifier::train(mat x, vec y, int n_class) {
 }
 
 
-vec Softmax_Classifier::infer(mat x) {
+vec Softmax_Classifier::predict(mat x) {
     vec res = vec(x.n_cols);
     for (int i = 0; i < x.n_cols; i++) {
         res(i) = (w * x.col(i)).index_max();
