@@ -31,7 +31,7 @@ class Tree_Classifier {
         void train(umat x, uvec y);
 
     private:
-        Node_Multi* _tree;
+        Node_Multi* _tree = NULL;
         umat _train_x;
         uvec _train_y;
         set<int> _feature_ids;

@@ -7,8 +7,9 @@
 #include <iostream>
 #include <armadillo>
 #include <cmath>
-#include <trees/tree_classifier.h>
 #include <trees/treenode.h>
+#include <trees/tree_classifier.h>
+#include <trees/random_forest.h>
 #include <stdlib.h>
 
 
@@ -16,7 +17,7 @@ using namespace std;
 using namespace arma;
 
 pair<umat, uvec> generate_data() {
-    int n_sample = 1000;
+    int n_sample = 100;
     int n_feature = 4;
     umat x(n_feature, n_sample);    
     uvec y(n_sample);
@@ -26,12 +27,12 @@ pair<umat, uvec> generate_data() {
     for(int i =0; i < n_sample; i++) {
         x(0, i) = rand() % 10;
         x(1, i) = rand() % 10 + 100;
-        x(2, i) = rand();
-        x(3, i) = rand();
+        x(2, i) = rand() % 10;
+        x(3, i) = rand() % 10;
 
-        if (x(0, i) <= 5 && x(1, i) > 105)  y(i) = 0;
-        else if (x(0, i) > 5 && x(1, i) == 106)  y(i) = 1;
-        else if (x(0, i) <= 5 && x(1, i) <= 105)  y(i) = 2;
+        if (x(0, i) <= 5 && x(1, i) > 105 && x(2, i) > 5 )  y(i) = 0;
+        else if (x(0, i) > 5 && x(1, i) == 106 && x(2, i) <= 5 && x(3, i) > 5)  y(i) = 1;
+        else if (x(0, i) <= 5 && x(1, i) <= 105 && x(2, i) < 5)  y(i) = 2;
         else y(i) = 3;
     }
     return make_pair(x, y);
@@ -42,18 +43,38 @@ int main() {
     pair<umat, uvec> p = generate_data();
     umat x = p.first;
     uvec y = p.second;
-    x.print();
-    y.print();
+    // x.print();
+    // y.print();    
 
-    Tree_Classifier tree_classifier = Tree_Classifier(/*max_depth=10, max_entropy=1.0*/);
-    tree_classifier.train(x, y);
-    uvec res = tree_classifier.predict(x);
-    // (res - y).print();
+    // Tree_Classifier tree_classifier = Tree_Classifier(20/*max_depth=10, max_entropy=1.0*/);
+    // tree_classifier.train(x, y);
+    // uvec res = tree_classifier.predict(x);
+    // cout << "=======================================\n";
+    // res.print();
+    // cout << "=======================================\n";
+    // uvec dis = res - y;
+    // int count = 0;
+    // for (int i =0; i < dis.n_elem; i++) {
+    //     count += dis(i) == 0 ? 1 : 0;
+    // }
+    // cout << (float)count / dis.n_elem <<endl;
+
+
+    Random_Forest rf(50, 3, 0.7, 1);
+    rf.train(x, y);
+    uvec res = rf.predict(x);
 
     cout << "=======================================\n";
     res.print();
     cout << "=======================================\n";
-    (res-y).print();
+
+    uvec dis = res - y;
+    int count = 0;
+    for (int i =0; i < dis.n_elem; i++) {
+        count += dis(i) == 0 ? 1 : 0;
+    }
+    cout << (float)count / dis.n_elem <<endl;
+
     return 0;
 }
 

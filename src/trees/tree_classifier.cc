@@ -43,6 +43,10 @@ void Tree_Classifier::train(umat x, uvec y) {
     for (int i=0; i < x.n_cols; i++)
         x_ids(i) = i;
     _tree = _train_helper(x_ids, 0);
+
+    // release the memory during training
+    _train_x = umat();
+    _train_y = uvec();
 }
 
 Node_Multi* Tree_Classifier::_train_helper(uvec x_ids, int depth) {
@@ -94,7 +98,7 @@ int Tree_Classifier::_get_label(map<int, int> label_count) {
 }
 
 double Tree_Classifier::_entropy(map<int, int> label_count) {
-    double entropy;
+    double entropy = 0.0;
     double n = 0.0;
     for(map<int, int>::iterator it = label_count.begin(); it != label_count.end(); it++) {
         n += it->second;
@@ -109,7 +113,7 @@ double Tree_Classifier::_entropy(map<int, int> label_count) {
 // split and get ids vectors map by feature value
 pair<int, map<int, uvec>> Tree_Classifier::_get_min_split_map(uvec x_ids) {
     // C4.5 split feature selection
-    double max_entropy_rate = 0.0;
+    double max_entropy_rate = DBL_MIN;
     int max_feature_id = -1;
     map<int, uvec> max_split_map;
 
@@ -153,13 +157,17 @@ double Tree_Classifier::_information_gain_rate(uvec x_ids, map<int, uvec> split_
     for (map<int, uvec>::iterator it = split_map.begin(); it != split_map.end(); it++) {
         double n_split = (it->second).n_elem;
         entropy_sum += (double)n_split / x_ids.n_elem * _entropy(_get_count(it->second));
-        split_information -= (double)n_split / x_ids.n_elem * (log(n_split) / log(x_ids.n_elem));
+        split_information -= ((double)n_split / x_ids.n_elem) * (log(n_split / x_ids.n_elem) / log(2));
     }
     return (entropy_1 - entropy_sum) / split_information;
 }
 
 
 uvec Tree_Classifier::predict(umat x) {
+    if (_tree == NULL) {
+        cerr << "[Error] null dicision tree, not classified!";
+        throw -1;
+    }
     uvec result(x.n_cols);
     for (int i = 0; i< x.n_cols; i++) {
         result(i) = _predict_helper(_tree, x.col(i));
@@ -168,13 +176,10 @@ uvec Tree_Classifier::predict(umat x) {
 }
 
 int Tree_Classifier::_predict_helper(Node_Multi* root, uvec x) {
-    if (root == NULL) {
-        cerr << "[Error] null pointer to node in the dicision tree!";
-        throw -1;
-    }
-    if ((root->leaves).size() > 0) {
-        return _predict_helper((root->leaves)[x(root->feature_id)], x);
-    } else {
+    if ((root->leaves).size() == 0 || 
+        (root->leaves).find(x(root->feature_id)) == (root->leaves).end()) {
         return root->label;
+    } else {
+        return _predict_helper((root->leaves)[x(root->feature_id)], x);
     }
 }

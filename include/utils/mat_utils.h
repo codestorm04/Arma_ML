@@ -16,25 +16,22 @@ using namespace arma;
 
 
 // Implements some utils for matrix operations
+template <typename T>
 class Mat_Utils {
-
     public:
-        template <typename T>
         static Mat<T> get_cols(Mat<T> m, uvec idx);
 
-        template <typename T>
         static Mat<T> get_rows(Mat<T> m, uvec idx);
 
-        template <typename T>
+        static Mat<T> get_submat(Mat<T> m, uvec idx_row, uvec idx_col);
+
         static void set_cols(Mat<T>& m, uvec idx, Mat<T> values);
 
-        template <typename T>
         static void set_rows(Mat<T>& m, uvec idx, Mat<T> values);
 
+        static void set_submat(Mat<T>& m, uvec idx_row, uvec idx_col, Mat<T> values);
     private:
 
-
-        
 };
 
 #endif // MAT_UTILS_H
