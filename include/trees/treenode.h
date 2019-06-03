@@ -14,7 +14,8 @@ using namespace std;
 // for continuous feature samples
 class Node_Binary {
 public:
-    Node_Binary(int feature_id=-1, double value=0) {
+    Node_Binary(double label, int feature_id=-1, double value=0) {
+        this->label = label;
         this->feature_id = feature_id;
         this->value = value;
         this->left = this->right = NULL;

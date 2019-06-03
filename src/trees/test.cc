@@ -10,8 +10,9 @@
 #include <trees/treenode.h>
 #include <trees/tree_classifier.h>
 #include <trees/random_forest.h>
+#include <trees/cart.h>
 #include <stdlib.h>
-
+#include <datasets/datasets.h>
 
 using namespace std;
 using namespace arma;
@@ -40,12 +41,15 @@ pair<umat, uvec> generate_data() {
 
 
 int main() {
-    pair<umat, uvec> p = generate_data();
-    umat x = p.first;
-    uvec y = p.second;
+    // pair<umat, uvec> p = generate_data();
+    // umat x = p.first;
+    // uvec y = p.second;
     // x.print();
     // y.print();    
 
+    /*******************************
+    * Tree classifier testing
+    *******************************/
     // Tree_Classifier tree_classifier = Tree_Classifier(20/*max_depth=10, max_entropy=1.0*/);
     // tree_classifier.train(x, y);
     // uvec res = tree_classifier.predict(x);
@@ -60,20 +64,41 @@ int main() {
     // cout << (float)count / dis.n_elem <<endl;
 
 
-    Random_Forest rf(50, 3, 0.7, 1);
-    rf.train(x, y);
-    uvec res = rf.predict(x);
 
-    cout << "=======================================\n";
-    res.print();
-    cout << "=======================================\n";
 
-    uvec dis = res - y;
-    int count = 0;
-    for (int i =0; i < dis.n_elem; i++) {
-        count += dis(i) == 0 ? 1 : 0;
-    }
-    cout << (float)count / dis.n_elem <<endl;
+    /******************************
+    /* random forest tesitng
+    *******************************/
+    // Random_Forest rf(50, 3, 0.7, 1);
+    // rf.train(x, y);
+    // uvec res = rf.predict(x);
+
+    // cout << "=======================================\n";
+    // res.print();
+    // cout << "=======================================\n";
+
+    // uvec dis = res - y;
+    // int count = 0;
+    // for (int i =0; i < dis.n_elem; i++) {
+    //     count += dis(i) == 0 ? 1 : 0;
+    // }
+    // cout << (float)count / dis.n_elem <<endl;
+
+
+
+    /*******************************
+    * cart regression testing
+    *******************************/    
+    Datasets dataset = Datasets("boston");
+    mat x = dataset.x;
+    vec y = dataset.y;
+    Cart_Regression cart(100);
+    cart.train(x, y);
+    vec res = cart.predict(x);
+    join_rows(res, y).print();
+    vec dis = res - y;
+    // dis.print();
+    cout << "The standard deviation is: " << stddev(dis) << endl;
 
     return 0;
 }

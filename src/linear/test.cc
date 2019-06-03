@@ -22,10 +22,11 @@ int main() {
 
     vec res = linear_regressor.predict(dataset.x);
     printf("The sum loss is:\n");
-    (res - dataset.y).print();
-
+    vec dis = res - dataset.y;
+    // dis.print();
     join_rows(res, dataset.y).print();
-
+    cout << "The standard deviation is: " << stddev(dis) << endl;
+    
     return 0;
 }
 
