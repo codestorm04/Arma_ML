@@ -31,11 +31,3 @@ download armadillo .tar, and build it.
 6. optimazers other than SGD
 7. 
 8. model saver / loader
- 
-```c++
-cd src
-g++ -shared -fPIC datasets/datasets.cc -std=c++14 -o libdata.so -I ../include/ -larmadillo
-g++ -shared -fPIC logistic/softmax_classifier.cc -std=c++14 -o libsoftmaxclassifier.so -I ../include/ -larmadillo
-g++ test.cc -I ../../include/  -L ./ -larmadillo -ldata   -std=c++14 -lsoftmaxclassifier
-export LD_LIBRARY_PATH=/home/lyz/desktop/github_repos/Machine_Learning_CPP/src/logisitc
-```

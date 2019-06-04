@@ -19,6 +19,5 @@ int main() {
     c.print();
     cout << c(2) << endl;
 
-    rowvec x = 
     return 0;
 }

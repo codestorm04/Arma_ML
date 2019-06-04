@@ -8,9 +8,8 @@
 # !.gitignore
 # !CMakeLists.txt
 
-/CMakeFiles/
-/Machine_Learning_CPP
-/CMakeCache.txt
-/cmake_install.cmake
-/Makefile
 /.idea/
+*.o
+*.so
+*.out
+*.log

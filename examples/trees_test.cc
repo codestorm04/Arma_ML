@@ -67,7 +67,7 @@ int main() {
 
 
     /******************************
-    /* random forest tesitng
+     * random forest tesitng
     *******************************/
     // Random_Forest rf(50, 3, 0.7, 1);
     // rf.train(x, y);
