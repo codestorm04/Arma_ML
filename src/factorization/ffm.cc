@@ -20,26 +20,13 @@ FFM::FFM() {
     // TODO: w
 }
 
-FFM::FFM(double penalty) : penalty(penalty) {
-    // TODO: w
+
+void FFM::train(mat x, vec y) {
+    // TODO
 }
 
 
-void Linear_Regressor::train(mat x, vec y) {
-    if (x.n_cols <= 0) 
-        return;
-    x.insert_rows(x.n_rows, rowvec(x.n_cols, fill::ones));  // insert one row with filled 0 at bottom
-    mat xt = x.t();
-    mat E = eye<mat>(x.n_rows, x.n_rows);
-    w = y.t() * xt * (solve(x * xt + penalty * E, E));
-}
-
-
-vec Linear_Regressor::predict(mat x) {
-    x.insert_rows(x.n_rows, rowvec(x.n_cols, fill::ones));
+vec FFM::predict(mat x) {
     vec res = vec(x.n_cols);
-    for (int i = 0; i < x.n_cols; i++) {
-        res(i) = as_scalar(w * x.col(i));
-    }
     return res;
 }

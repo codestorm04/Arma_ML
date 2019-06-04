@@ -41,8 +41,8 @@ void FM::train(mat x, uvec field, vec y) {
         // w1 update
         rowvec w1_delta(size(w1), fill::zeros);
         for (int i = 0; i < n_samples; i++) {
-            mat tmp = Mat_Utils::get_cols(w1_delta, idx.col(i)) + x.col(i).t() * res(i);
-            Mat_Utils::set_cols(w1_delta, idx.col(i), tmp);
+            mat tmp = Mat_Utils<double>::get_cols(w1_delta, idx.col(i)) + x.col(i).t() * res(i);
+            Mat_Utils<double>::set_cols(w1_delta, idx.col(i), tmp);
         }
         w1 -= lr * w1_delta / n_samples;
 
@@ -56,7 +56,7 @@ void FM::train(mat x, uvec field, vec y) {
 
             // x_i * sigma(v_jf * x_j)
             mat tmp = vv_x.col(i) * x.col(i).t();
-            Mat_Utils::set_cols(v_delta, idx.col(i), tmp);
+            Mat_Utils<double>::set_cols(v_delta, idx.col(i), tmp);
         }
         v -= lr * v_delta / n_samples;
     }
@@ -83,9 +83,9 @@ pair<vec, mat> FM::_get_y(umat idx, mat x, uvec field) {
         vec x_sam = x.col(i);
         uvec idx_sam = idx.col(i);
 
-        double term2 = as_scalar(Mat_Utils::get_cols(w1, idx_sam) * x_sam);
+        double term2 = as_scalar(Mat_Utils<double>::get_cols(w1, idx_sam) * x_sam);
 
-        mat vv = Mat_Utils::get_cols(v, idx_sam);
+        mat vv = Mat_Utils<double>::get_cols(v, idx_sam);
         sum_v_x.col(i) = vv * x_sam;        
         double term3 = (sum(square(sum_v_x.col(i))) - sum(square(vv) * square(x_sam))) / 2.0;
 
