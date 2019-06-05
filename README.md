@@ -1,25 +1,37 @@
-# Machine_Learning_CPP
+# Arma_ML (Armadillo-based Machine Learning library)
 Author: Yuzhen Liu  
-Started From 2019.3.22 (Two days after my birthday)  
-Lightweighted Statistic ML implementations on C++.  
+Started From 2019.3.22  
+Light-weighted Statistic ML implementations in C++.  
 
 
 ## Installation
 Requeirs C++ algebra library armadillo, installation of armadillo is as follows:  
 
-Tested for Ubuntu 16.04:  
+install denpencies first (Tested for Ubuntu 16.04):  
     
     sudo apt-get install libopenblas-dev
 	sudo apt-get install liblapack-dev
 	sudo apt-get install libarpack2-dev
 	sudo apt-get install libsuperlu-dev
 
-download armadillo .tar, and build it.  
+download armadillo (armadillo-9.300.2 tested) as xxx.tar, cd and build it.   
 
+	cd armadillo-9.300.2
 	cmake .
 	make
 	sudo make install
 
+clone and build Arma_ML directly in place
+
+	git clone https://github.com/codestorm04/Arma_ML.git
+	cd Arma_ML
+	make
+
+or build and install
+
+	make install
+	
+examples/ are the usage demos of each modules, reference to [README.md](/examples/README.md)
 
 
 ## TODO:
@@ -29,5 +41,4 @@ download armadillo .tar, and build it.
 4. params setting
 5. normalization: L1 L2
 6. optimazers other than SGD
-7. 
-8. model saver / loader
+7. model saver / loader
