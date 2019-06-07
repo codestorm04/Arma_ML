@@ -11,6 +11,7 @@
 #include <trees/tree_classifier.h>
 #include <trees/random_forest.h>
 #include <trees/cart.h>
+#include <trees/gradient_boosting_dt.h>
 #include <stdlib.h>
 #include <datasets/datasets.h>
 
@@ -89,12 +90,28 @@ int main() {
     /*******************************
     * cart regression testing
     *******************************/    
+    // Datasets dataset = Datasets("boston");
+    // mat x = dataset.x;
+    // vec y = dataset.y;
+    // Cart_Regression cart(100);
+    // cart.train(x, y);
+    // vec res = cart.predict(x);
+    // join_rows(res, y).print();
+    // vec dis = res - y;
+    // // dis.print();
+    // cout << "The standard deviation is: " << stddev(dis) << endl;
+
+
+
+    /*******************************
+    * GBDT testing
+    *******************************/    
     Datasets dataset = Datasets("boston");
     mat x = dataset.x;
     vec y = dataset.y;
-    Cart_Regression cart(100);
-    cart.train(x, y);
-    vec res = cart.predict(x);
+    Gradient_Boosting_DT gbdt(8, 0.8, 80);
+    gbdt.train(x, y);
+    vec res = gbdt.predict(x);
     join_rows(res, y).print();
     vec dis = res - y;
     // dis.print();
