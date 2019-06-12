@@ -82,13 +82,6 @@ template void Mat_Utils<double>::set_cols(mat&, uvec, mat);
 template void Mat_Utils<double>::set_rows(mat&, uvec, mat);
 template void Mat_Utils<double>::set_submat(mat&, uvec, uvec, mat);
 
-// template umat Mat_Utils::get_cols<int>(umat, uvec);
-// template umat Mat_Utils::get_rows<int>(umat, uvec);
-// template umat Mat_Utils::get_submat<int>(umat, uvec, uvec);
-// template void Mat_Utils::set_cols<int>(umat&, uvec, umat);
-// template void Mat_Utils::set_rows<int>(umat&, uvec, umat);
-// template void Mat_Utils::set_submat<int>(umat&, uvec, uvec, umat);
-
 template umat Mat_Utils<unsigned long long>::get_cols(umat, uvec);
 template umat Mat_Utils<unsigned long long>::get_rows(umat, uvec);
 template umat Mat_Utils<unsigned long long>::get_submat(umat, uvec, uvec);

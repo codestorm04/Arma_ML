@@ -109,7 +109,7 @@ int main() {
     Datasets dataset = Datasets("boston");
     mat x = dataset.x;
     vec y = dataset.y;
-    Gradient_Boosting_DT gbdt(8, 0.8, 80);
+    Gradient_Boosting_DT gbdt(6, 0.8, 80);
     gbdt.train(x, y);
     vec res = gbdt.predict(x);
     join_rows(res, y).print();
