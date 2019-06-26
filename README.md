@@ -37,11 +37,12 @@ examples/ are the usage demos of each modules, reference to [README.md](/example
 ## TODO:
 1. Build strategies:   [Reference](https://www.cnblogs.com/Anker/p/3527677.html)
 2. decision tree pruning
-3. models: knn, svm, LDA, gbdt, PCA, MDS, k-means, FFM
+3. models: knn, LDA, PCA, MDS, k-means, FFM
 4. params setting
 5. normalization: L1 L2
 6. optimazers other than SGD
 7. model saver / loader
+8. oprimizers, metrics, console visualization module
 
 
 ## Contrinutions, Issues and Starts are Welcomed :) !!! 
