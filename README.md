@@ -1,7 +1,7 @@
 # Arma_ML (Armadillo-based Machine Learning library)
 Author: Yuzhen Liu  
 Started From 2019.3.22  
-Light-weighted Statistic ML implementations in C++.  
+Light-weighted Statistic ML implementations in C++. Algorithms included are linear regression, logistic regression classifier, sofrmax classifier, C4.5 decision tree, random forest, GBDT, FM, naive bayes classifier, SVM.
 
 
 ## Installation
