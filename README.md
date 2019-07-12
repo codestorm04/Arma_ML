@@ -1,7 +1,7 @@
 # Arma_ML (Armadillo-based Machine Learning library)
 Author: Yuzhen Liu  
 Started From 2019.3.22  
-Light-weighted Statistic ML implementations in C++. Algorithms included are linear regression, logistic regression classifier, sofrmax classifier, C4.5 decision tree, random forest, GBDT, FM, naive bayes classifier, SVM.
+Light-weighted Statistic ML implementations in C++. Algorithms included are [linear regression](https://en.wikipedia.org/wiki/Linear_regression), [Logistic Regression Classifier](https://en.wikipedia.org/wiki/Logistic_regression), Sofrmax Classifier, [C4.5 Decision Tree](https://en.wikipedia.org/wiki/C4.5), [Random Forest](https://en.wikipedia.org/wiki/Random_forest), [GBDT](https://en.wikipedia.org/wiki/Gradient_boosting), FM, [Naive Bayes Classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), [SVM](https://en.wikipedia.org/wiki/Support-vector_machine).
 
 
 ## Installation
